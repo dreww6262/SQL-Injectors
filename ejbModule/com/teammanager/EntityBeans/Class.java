@@ -1,19 +1,50 @@
 package com.teammanager.EntityBeans;
 
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+/**
+ * Session Bean implementation class Assignment
+ */
+@Entity
+@Table(name = "Assignment")
+@XmlRootElement
 
+@NamedQueries ( {
+    @NamedQuery(name = "Assignment.findByAssignment_id", query = "SELECT u FROM Assignment u WHERE u.assignment_id = :assignment_id")
+})
 /**
  * Session Bean implementation class Class
  */
-@Stateless
-@LocalBean
-public class Class {
+public class Class implements Serializable{
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     // primary key
+    @Id
+    @Basic(optional = false)
+    @Column(name = "access_code")
     private String access_code;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 32)
+    @Column(name = "name")
     private String name;
     // foreign key
+    @JoinColumn(name = "teacher_id", referencedColumnName = "teacher_id")
+    @ManyToOne
     private String teacher_id;
 
 

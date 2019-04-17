@@ -1,18 +1,49 @@
 package com.teammanager.EntityBeans;
 
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
+import java.io.Serializable;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 /**
- * Session Bean implementation class Teacher
+ * Session Bean implementation class Assignment
  */
-@Stateless
-@LocalBean
-public class Teacher {
+@Entity
+@Table(name = "Assignment")
+@XmlRootElement
+
+@NamedQueries ( {
+    @NamedQuery(name = "Assignment.findByAssignment_id", query = "SELECT u FROM Assignment u WHERE u.assignment_id = :assignment_id")
+})
+public class Teacher implements Serializable{
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     //primary key
+    @Id
+    @NotNull
+    @Basic(optional = false)
+    @Size(min = 5, max = 15)
+    @Column(name = "username")
     private String username;
-    private String password;
+    @NotNull
+    @Basic(optional = false)
+    @Size(min = 1, max = 32)
+    @Column(name = "name")
     private String name;
+    @NotNull
+    @Basic(optional = false)
+    @Size(min = 8, max = 16)
+    @Column(name = "password")
+    private String password;
 
 
     /**

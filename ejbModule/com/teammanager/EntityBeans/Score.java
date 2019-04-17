@@ -1,19 +1,51 @@
 package com.teammanager.EntityBeans;
 
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
-
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 /**
- * Session Bean implementation class Score
+ * Session Bean implementation class Assignment
  */
-@Stateless
-@LocalBean
-public class Score {
+@Entity
+@Table(name = "Assignment")
+@XmlRootElement
+
+@NamedQueries ( {
+    @NamedQuery(name = "Assignment.findByAssignment_id", query = "SELECT u FROM Assignment u WHERE u.assignment_id = :assignment_id")
+})
+public class Score implements Serializable{/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    @Column(name = "grade")
     private double grade;
+    @Column(name = "name")
+    @Basic(optional = false)
+    @Size(min = 1, max = 32)
+    @NotNull
     private String name;
     //primary key
+    @Column(name = "score_id")
+    @Basic(optional = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String score_id;
     // foreign key
+    @JoinColumn(name = "skill_id", referencedColumnName = "skill_id")
+    @ManyToOne
     private String skill_id;
 
 
