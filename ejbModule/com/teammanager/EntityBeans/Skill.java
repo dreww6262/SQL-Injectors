@@ -16,14 +16,14 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 /**
- * Session Bean implementation class Assignment
+ * Session Bean implementation class Skill
  */
 @Entity
-@Table(name = "Assignment")
+@Table(name = "Skill")
 @XmlRootElement
 
 @NamedQueries ( {
-    @NamedQuery(name = "Assignment.findByAssignment_id", query = "SELECT u FROM Assignment u WHERE u.assignment_id = :assignment_id")
+    @NamedQuery(name = "Skill.findBySkill_id", query = "SELECT u FROM Skill u WHERE u.skill_id = :skill_id AND u.name = :name")
 })
 public class Skill implements Serializable{
     /**

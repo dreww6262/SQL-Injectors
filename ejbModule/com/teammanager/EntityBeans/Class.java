@@ -14,14 +14,14 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 /**
- * Session Bean implementation class Assignment
+ * Session Bean implementation class Class
  */
 @Entity
-@Table(name = "Assignment")
+@Table(name = "Class")
 @XmlRootElement
 
 @NamedQueries ( {
-    @NamedQuery(name = "Assignment.findByAssignment_id", query = "SELECT u FROM Assignment u WHERE u.assignment_id = :assignment_id")
+    @NamedQuery(name = "Class.findByAccessCode", query = "SELECT u FROM Class u WHERE u.access_code = :access_code")
 })
 /**
  * Session Bean implementation class Class
